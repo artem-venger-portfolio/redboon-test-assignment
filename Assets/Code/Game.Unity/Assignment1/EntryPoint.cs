@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Game.Assignment1;
 using Game.Common;
 using Game.Unity.Common;
 using UnityEngine;
@@ -12,7 +14,24 @@ namespace Game.Unity.Assignment1
         private void Awake()
         {
             IGameLogger logger = new UnityLogger();
-            logger.Log(message: "Hello, World!");
+
+            var characterInventory = CreateInventory(_config.CharacterInventory);
+            ICharacter character = new Character(characterInventory, _config.CharacterMoney, logger);
+
+            var merchantInventory = CreateInventory(_config.MerchantInventory);
+            IMerchant merchant = new Merchant(merchantInventory, logger);
+        }
+
+        private static IInventory CreateInventory(IList<SlotData> configCharacterInventory)
+        {
+            var inventory = new InventoryDefault();
+            foreach (var slotData in configCharacterInventory)
+            {
+                var slot = new SlotDefault(slotData.Item, slotData.Quantity);
+                inventory.Add(slot);
+            }
+
+            return inventory;
         }
     }
 }
