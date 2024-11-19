@@ -8,6 +8,6 @@ namespace Game.Unity.Assignment1
     {
         public abstract event Action DragStarted;
         public abstract event Action DragEnded;
-        public abstract void Initialize(IGameLogger logger);
+        public abstract void Initialize(Transform draggingObjectContainer, IGameLogger logger);
     }
 }

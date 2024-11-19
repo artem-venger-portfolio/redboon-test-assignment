@@ -12,6 +12,9 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private InventoryViewBase _merchantInventory;
 
+        [SerializeField]
+        private Transform _draggingObjectContainer;
+
         private ICharacter _character;
         private IMerchant _merchant;
 
@@ -21,8 +24,8 @@ namespace Game.Unity.Assignment1
             _character = character;
             _merchant = merchant;
 
-            _characterInventory.Initialize(_character, slotTemplate, logger);
-            _merchantInventory.Initialize(_merchant, slotTemplate, logger);
+            _characterInventory.Initialize(_character, slotTemplate, _draggingObjectContainer, logger);
+            _merchantInventory.Initialize(_merchant, slotTemplate, _draggingObjectContainer, logger);
         }
     }
 }

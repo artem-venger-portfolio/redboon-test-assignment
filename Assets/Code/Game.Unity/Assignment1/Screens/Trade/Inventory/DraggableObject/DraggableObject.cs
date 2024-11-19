@@ -7,6 +7,8 @@ namespace Game.Unity.Assignment1
 {
     public class DraggableObject : DraggableObjectBase, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        private Transform _draggingObjectContainer;
+        private Transform _originalParent;
         private Vector3 _startPosition;
         private IGameLogger _logger;
 
@@ -14,9 +16,13 @@ namespace Game.Unity.Assignment1
 
         public override event Action DragEnded;
 
-        public override void Initialize(IGameLogger logger)
+        public override void Initialize(Transform draggingObjectContainer, IGameLogger logger)
         {
+            _draggingObjectContainer = draggingObjectContainer;
             _logger = logger;
+
+            _startPosition = Position;
+            _originalParent = Parent;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -27,7 +33,7 @@ namespace Game.Unity.Assignment1
         public void OnBeginDrag(PointerEventData eventData)
         {
             LogInfo(nameof(OnBeginDrag));
-            _startPosition = Position;
+            Parent = _draggingObjectContainer;
             DragStarted?.Invoke();
         }
 
@@ -35,7 +41,7 @@ namespace Game.Unity.Assignment1
         {
             LogInfo(nameof(OnEndDrag));
             Position = _startPosition;
-            _startPosition = Vector3.zero;
+            Parent = _originalParent;
             DragEnded?.Invoke();
         }
 
@@ -43,6 +49,12 @@ namespace Game.Unity.Assignment1
         {
             get => transform.position;
             set => transform.position = value;
+        }
+
+        private Transform Parent
+        {
+            get => transform.parent;
+            set => transform.SetParent(value, worldPositionStays: true);
         }
 
         private void LogInfo(string message)

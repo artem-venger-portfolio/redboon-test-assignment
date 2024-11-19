@@ -6,6 +6,6 @@ namespace Game.Unity.Assignment1
 {
     public abstract class SlotViewBase : MonoBehaviour
     {
-        public abstract void Initialize(Items item, int count, IGameLogger logger);
+        public abstract void Initialize(Items item, int count, Transform draggingObjectContainer, IGameLogger logger);
     }
 }
