@@ -21,7 +21,6 @@ namespace Game.Unity.Assignment1
             _draggingObjectContainer = draggingObjectContainer;
             _logger = logger;
 
-            _startPosition = Position;
             _originalParent = Parent;
         }
 
@@ -34,6 +33,7 @@ namespace Game.Unity.Assignment1
         {
             LogInfo(nameof(OnBeginDrag));
             Parent = _draggingObjectContainer;
+            _startPosition = Position;
             DragStarted?.Invoke();
         }
 
