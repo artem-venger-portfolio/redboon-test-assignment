@@ -1,4 +1,5 @@
 using Game.Assignment1;
+using Game.Common;
 using UnityEngine;
 
 namespace Game.Unity.Assignment1
@@ -14,13 +15,14 @@ namespace Game.Unity.Assignment1
         private ICharacter _character;
         private IMerchant _merchant;
 
-        public override void Initialize(ICharacter character, IMerchant merchant, SlotViewBase slotTemplate)
+        public override void Initialize(ICharacter character, IMerchant merchant, SlotViewBase slotTemplate,
+                                        IGameLogger logger)
         {
             _character = character;
             _merchant = merchant;
-            
-            _characterInventory.Initialize(_character, slotTemplate);
-            _merchantInventory.Initialize(_merchant, slotTemplate);
+
+            _characterInventory.Initialize(_character, slotTemplate, logger);
+            _merchantInventory.Initialize(_merchant, slotTemplate, logger);
         }
     }
 }

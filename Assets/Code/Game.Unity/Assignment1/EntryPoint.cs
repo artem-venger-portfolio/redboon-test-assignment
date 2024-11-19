@@ -27,7 +27,7 @@ namespace Game.Unity.Assignment1
             var merchantInventory = CreateInventory(_config.MerchantInventory);
             IMerchant merchant = new Merchant(merchantInventory, logger);
 
-            _tradeScreen.Initialize(character, merchant, _slotTemplate);
+            _tradeScreen.Initialize(character, merchant, _slotTemplate, logger);
         }
 
         private static IInventory CreateInventory(IList<SlotConfig> configCharacterInventory)
