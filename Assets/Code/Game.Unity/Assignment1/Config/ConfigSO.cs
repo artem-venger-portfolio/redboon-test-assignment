@@ -9,21 +9,21 @@ namespace Game.Unity.Assignment1
     {
         [Header(header: "Character")]
         [SerializeField]
-        private SlotData[] _characterInventory;
+        private SlotConfig[] _characterInventory;
 
         [SerializeField]
         private int _characterMoney;
 
         [Header(header: "Merchant")]
         [SerializeField]
-        private SlotData[] _merchantInventory;
+        private SlotConfig[] _merchantInventory;
 
         private const string NAME = nameof(ConfigSO);
 
-        public IList<SlotData> CharacterInventory => _characterInventory;
+        public IList<SlotConfig> CharacterInventory => _characterInventory;
 
         public int CharacterMoney => _characterMoney;
 
-        public IList<SlotData> MerchantInventory => _merchantInventory;
+        public IList<SlotConfig> MerchantInventory => _merchantInventory;
     }
 }

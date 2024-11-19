@@ -27,7 +27,7 @@ namespace Game.Unity.Assignment1
             _tradeScreen.Initialize(character, merchant);
         }
 
-        private static IInventory CreateInventory(IList<SlotData> configCharacterInventory)
+        private static IInventory CreateInventory(IList<SlotConfig> configCharacterInventory)
         {
             var inventory = new InventoryDefault();
             foreach (var slotData in configCharacterInventory)
