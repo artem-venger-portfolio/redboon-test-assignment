@@ -14,6 +14,9 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private TradeScreenBase _tradeScreen;
 
+        [SerializeField]
+        private SlotViewBase _slotTemplate;
+
         private void Awake()
         {
             IGameLogger logger = new UnityLogger();
@@ -24,7 +27,7 @@ namespace Game.Unity.Assignment1
             var merchantInventory = CreateInventory(_config.MerchantInventory);
             IMerchant merchant = new Merchant(merchantInventory, logger);
 
-            _tradeScreen.Initialize(character, merchant);
+            _tradeScreen.Initialize(character, merchant, _slotTemplate);
         }
 
         private static IInventory CreateInventory(IList<SlotConfig> configCharacterInventory)

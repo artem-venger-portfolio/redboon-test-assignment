@@ -7,6 +7,18 @@ namespace Game.Assignment1
     {
         private readonly List<ISlot> _slots = new List<ISlot>();
 
+        public IList<ItemToQuantity> GetItems()
+        {
+            var items = new List<ItemToQuantity>();
+
+            foreach (var slot in _slots)
+            {
+                items.Add(new ItemToQuantity(slot.Item, slot.Quantity));
+            }
+
+            return items;
+        }
+
         public void Add(ISlot slot)
         {
             var item = slot.Item;
