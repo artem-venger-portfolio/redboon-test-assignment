@@ -12,9 +12,7 @@ namespace Game.Unity.Assignment1
         private Vector3 _startPosition;
         private IGameLogger _logger;
 
-        public override event Action DragStarted;
-
-        public override event Action DragEnded;
+        public override event Action<Vector2> DragEnded;
 
         public override void Initialize(Transform draggingObjectContainer, IGameLogger logger)
         {
@@ -34,7 +32,6 @@ namespace Game.Unity.Assignment1
             LogInfo(nameof(OnBeginDrag));
             Parent = _draggingObjectContainer;
             _startPosition = Position;
-            DragStarted?.Invoke();
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -42,7 +39,7 @@ namespace Game.Unity.Assignment1
             LogInfo(nameof(OnEndDrag));
             Position = _startPosition;
             Parent = _originalParent;
-            DragEnded?.Invoke();
+            DragEnded?.Invoke(eventData.position);
         }
 
         private Vector3 Position
