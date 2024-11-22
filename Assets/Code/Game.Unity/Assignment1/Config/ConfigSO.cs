@@ -31,5 +31,9 @@ namespace Game.Unity.Assignment1
         public int CharacterMoney => _characterMoney;
 
         public IList<Items> MerchantInventory => _merchantInventory;
+
+        public ItemToPrice[] Price => _price;
+
+        public float SellPriceMultiplier => _sellPriceMultiplier;
     }
 }

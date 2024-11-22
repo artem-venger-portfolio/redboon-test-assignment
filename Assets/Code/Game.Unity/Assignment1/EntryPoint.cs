@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game.Assignment1;
+using Game.Assignment1.PriceController;
 using Game.Common;
 using Game.Unity.Assignment1.HUD;
 using Game.Unity.Common;
@@ -21,15 +23,22 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private HUDBase _hud;
 
+        private IPriceController _priceController;
+
         private void Awake()
         {
             IGameLogger logger = new UnityLogger();
+
+            var prices = _config.Price.ToDictionary(currentPrice => currentPrice.Item, 
+                                                    currentPrice => currentPrice.Price);
+            _priceController = new PriceController(prices, _config.SellPriceMultiplier);
 
             var characterInventory = CreateInventory(_config.CharacterInventory);
             ICharacter character = new Character(characterInventory, _config.CharacterMoney, logger);
 
             var merchantInventory = CreateInventory(_config.MerchantInventory);
             IMerchant merchant = new Merchant(merchantInventory, logger);
+
 
             _tradeScreen.Initialize(character, merchant, _slotTemplate, logger);
             _hud.Initialize(character);
