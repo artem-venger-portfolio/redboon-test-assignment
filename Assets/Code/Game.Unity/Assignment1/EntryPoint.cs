@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Game.Assignment1;
 using Game.Common;
+using Game.Unity.Assignment1.HUD;
 using Game.Unity.Common;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private SlotViewBase _slotTemplate;
 
+        [SerializeField]
+        private HUDBase _hud;
+
         private void Awake()
         {
             IGameLogger logger = new UnityLogger();
@@ -28,6 +32,7 @@ namespace Game.Unity.Assignment1
             IMerchant merchant = new Merchant(merchantInventory, logger);
 
             _tradeScreen.Initialize(character, merchant, _slotTemplate, logger);
+            _hud.Initialize(character);
         }
 
         private static IInventory CreateInventory(IList<SlotConfig> configCharacterInventory)

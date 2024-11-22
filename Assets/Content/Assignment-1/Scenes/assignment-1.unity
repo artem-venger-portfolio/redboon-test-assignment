@@ -353,6 +353,7 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: d8e0f8ebeafc6b04ba96dd920605698a, type: 2}
   _tradeScreen: {fileID: 1965521130}
   _slotTemplate: {fileID: 5165130228333563338, guid: dd0ade1d9fa25d948b9d22e6dcdd142f, type: 3}
+  _hud: {fileID: 1284504364}
 --- !u!1001 &1284504362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -507,6 +508,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3817865537223720330, guid: dc5d99aefe7789445ac60686edacc090, type: 3}
   m_PrefabInstance: {fileID: 1284504362}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1284504364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9105193853397797214, guid: dc5d99aefe7789445ac60686edacc090, type: 3}
+  m_PrefabInstance: {fileID: 1284504362}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df017a86e1941e78e6bbd2922b8ae0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1487644473
 GameObject:
   m_ObjectHideFlags: 0
