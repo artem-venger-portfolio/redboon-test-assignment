@@ -18,6 +18,12 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private Items[] _merchantInventory;
 
+        [SerializeField]
+        private ItemToPrice[] _price;
+
+        [SerializeField]
+        private float _sellPriceMultiplier = 0.9f;
+
         private const string NAME = nameof(ConfigSO);
 
         public IList<Items> CharacterInventory => _characterInventory;

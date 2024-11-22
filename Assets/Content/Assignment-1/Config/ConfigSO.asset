@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ed67105d134289af482045dabef8b9, type: 3}
   m_Name: ConfigSO
   m_EditorClassIdentifier: 
-  _characterInventory:
-  - Item: 0
-    Quantity: 10
-  - Item: 1
-    Quantity: 10
+  _characterInventory: 0000000000000000
   _characterMoney: 10
-  _merchantInventory:
+  _merchantInventory: 0000000000000000
+  _price:
   - Item: 0
-    Quantity: 10
+    Price: 10
   - Item: 1
-    Quantity: 10
+    Price: 20
+  _sellPriceMultiplier: 0.9
