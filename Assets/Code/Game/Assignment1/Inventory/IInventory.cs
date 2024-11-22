@@ -4,7 +4,7 @@ namespace Game.Assignment1
 {
     public interface IInventory
     {
-        IList<ItemToQuantity> GetItems();
-        void Add(ISlot slot);
+        IReadOnlyList<Items> Items { get; }
+        void Add(Items item);
     }
 }

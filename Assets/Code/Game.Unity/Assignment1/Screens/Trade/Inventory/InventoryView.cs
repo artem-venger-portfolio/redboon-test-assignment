@@ -18,11 +18,11 @@ namespace Game.Unity.Assignment1
         public override void Initialize(IInventoryHolder inventoryHolder, SlotViewBase slotTemplate,
                                         Transform draggingObjectCOntainer, IGameLogger logger)
         {
-            var items = inventoryHolder.Inventory.GetItems();
+            var items = inventoryHolder.Inventory.Items;
             foreach (var currentItem in items)
             {
                 var slot = Instantiate(slotTemplate, transform);
-                slot.Initialize(currentItem.Item, currentItem.Quantity, draggingObjectCOntainer, logger);
+                slot.Initialize(currentItem, count: 1, draggingObjectCOntainer, logger);
                 slot.ItemDropped += ItemDroppedEventHandler;
                 _slots.Add(slot);
             }

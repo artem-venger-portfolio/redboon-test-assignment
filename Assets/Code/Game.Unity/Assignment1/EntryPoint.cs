@@ -35,13 +35,12 @@ namespace Game.Unity.Assignment1
             _hud.Initialize(character);
         }
 
-        private static IInventory CreateInventory(IList<SlotConfig> configCharacterInventory)
+        private static IInventory CreateInventory(IList<Items> configCharacterInventory)
         {
             var inventory = new InventoryDefault();
-            foreach (var slotData in configCharacterInventory)
+            foreach (var currentItem in configCharacterInventory)
             {
-                var slot = new SlotDefault(slotData.Item, slotData.Quantity);
-                inventory.Add(slot);
+                inventory.Add(currentItem);
             }
 
             return inventory;
