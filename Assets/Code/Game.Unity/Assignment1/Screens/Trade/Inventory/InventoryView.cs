@@ -22,7 +22,7 @@ namespace Game.Unity.Assignment1
             foreach (var currentItem in items)
             {
                 var slot = Instantiate(slotTemplate, transform);
-                slot.Initialize(currentItem, count: 1, draggingObjectCOntainer, logger);
+                slot.Initialize(currentItem, draggingObjectCOntainer, logger);
                 slot.ItemDropped += ItemDroppedEventHandler;
                 _slots.Add(slot);
             }

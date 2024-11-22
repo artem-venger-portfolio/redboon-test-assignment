@@ -12,9 +12,6 @@ namespace Game.Unity.Assignment1
         private TMP_Text _nameLabel;
 
         [SerializeField]
-        private TMP_Text _countLabel;
-
-        [SerializeField]
         private DraggableObjectBase _draggableObject;
 
         public override event Action<Vector2> ItemDropped
@@ -23,11 +20,10 @@ namespace Game.Unity.Assignment1
             remove => _draggableObject.DragEnded -= value;
         }
 
-        public override void Initialize(Items item, int count, Transform draggingObjectContainer,
+        public override void Initialize(Items item, Transform draggingObjectContainer,
                                         IGameLogger logger)
         {
             _nameLabel.text = item.ToString();
-            _countLabel.text = count.ToString();
             _draggableObject.Initialize(draggingObjectContainer, logger);
         }
     }
