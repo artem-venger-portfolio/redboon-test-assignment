@@ -5,7 +5,7 @@ namespace Game.Unity.Assignment2
 {
     public class Visualizer
     {
-        private IEnumerable<Vector2> _path;
+        private readonly IEnumerable<Vector2> _path;
         private readonly IList<Edge> _edges;
         private int _rectangleIndex;
 
@@ -51,6 +51,13 @@ namespace Game.Unity.Assignment2
                     DrawRect(currentSecondRect, unitSprite);
                 }
             }
+
+            var pathLineRenderer = CreateLineRenderer(name: "Path", Color.green, lineMaterial);
+            var pathPointIndex = 0;
+            foreach (var currentPoint in _path)
+            {
+                pathLineRenderer.SetPosition(pathPointIndex++, currentPoint);
+            }
         }
 
         private static Sprite CreateSprite(Color color)
@@ -88,15 +95,22 @@ namespace Game.Unity.Assignment2
 
         private void DrawLine(string name, Vector2 start, Vector2 end, Color color, Material material)
         {
+            var lineRenderer = CreateLineRenderer(name, color, material);
+            lineRenderer.SetPosition(index: 0, start);
+            lineRenderer.SetPosition(index: 1, end);
+        }
+
+        private static LineRenderer CreateLineRenderer(string name, Color color, Material material)
+        {
             var lineRendererGO = new GameObject(name);
             var lineRenderer = lineRendererGO.AddComponent<LineRenderer>();
             lineRenderer.startColor = color;
             lineRenderer.endColor = color;
             lineRenderer.startWidth = 0.1f;
             lineRenderer.endWidth = 0.1f;
-            lineRenderer.SetPosition(index: 0, start);
-            lineRenderer.SetPosition(index: 1, end);
             lineRenderer.sharedMaterial = material;
+
+            return lineRenderer;
         }
     }
 }
