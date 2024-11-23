@@ -17,8 +17,15 @@ namespace Game.Unity.Assignment2
 
         public void Draw()
         {
-            var unitSprite = CreateSprite(Color.white);
             var lineMaterial = new Material(Shader.Find(name: "Legacy Shaders/Particles/Alpha Blended Premultiply"));
+
+            DrawEdges(lineMaterial);
+            DrawPath(lineMaterial);
+        }
+
+        private void DrawEdges(Material lineMaterial)
+        {
+            var unitSprite = CreateSprite(Color.white);
 
             for (var i = 0; i < _edges.Count; i++)
             {
@@ -51,7 +58,10 @@ namespace Game.Unity.Assignment2
                     DrawRect(currentSecondRect, unitSprite);
                 }
             }
+        }
 
+        private void DrawPath(Material lineMaterial)
+        {
             var pathLineRenderer = CreateLineRenderer(name: "Path", Color.green, lineMaterial);
             var pathPointIndex = 0;
             foreach (var currentPoint in _path)
@@ -93,7 +103,7 @@ namespace Game.Unity.Assignment2
             rectangleSpriteTransform.position = rectangleMin;
         }
 
-        private void DrawLine(string name, Vector2 start, Vector2 end, Color color, Material material)
+        private static void DrawLine(string name, Vector2 start, Vector2 end, Color color, Material material)
         {
             var lineRenderer = CreateLineRenderer(name, color, material);
             lineRenderer.SetPosition(index: 0, start);
