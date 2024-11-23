@@ -8,7 +8,7 @@ namespace Game.Unity.Assignment1
     public abstract class SlotViewBase : MonoBehaviour
     {
         public abstract Items Item { get; protected set; }
-        public abstract event Action<Vector2> ItemDropped;
+        public abstract event Action<Items, Vector2> ItemDropped;
         public abstract void Initialize(Items item, int price, Transform draggingObjectContainer, IGameLogger logger);
         public abstract void Destroy();
     }

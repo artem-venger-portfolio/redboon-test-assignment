@@ -33,7 +33,8 @@ namespace Game.Unity.Assignment1
             var merchantInventory = CreateInventory(_config.MerchantInventory, prices, priceMultiplier: 1f);
             IMerchant merchant = new Merchant(merchantInventory, logger);
 
-            _tradeScreen.Initialize(character, merchant, _slotTemplate, logger);
+            ITrade trade = new Trade(character, merchant);
+            _tradeScreen.Initialize(trade, character, merchant, _slotTemplate, logger);
             _hud.Initialize(character);
         }
 

@@ -15,13 +15,16 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private Transform _draggingObjectContainer;
 
+        private ITrade _trade;
         private ICharacter _character;
         private IGameLogger _logger;
         private IMerchant _merchant;
 
-        public override void Initialize(ICharacter character, IMerchant merchant, SlotViewBase slotTemplate,
+        public override void Initialize(ITrade trade, ICharacter character, IMerchant merchant,
+                                        SlotViewBase slotTemplate,
                                         IGameLogger logger)
         {
+            _trade = trade;
             _character = character;
             _merchant = merchant;
             _logger = logger;
@@ -33,21 +36,29 @@ namespace Game.Unity.Assignment1
             _merchantInventory.ItemDropped += MerchantItemDroppedEventHandler;
         }
 
-        private void CharacterItemDroppedEventHandler(Vector2 position)
+        private void CharacterItemDroppedEventHandler(Items item, Vector2 position)
         {
             LogInfo(nameof(CharacterItemDroppedEventHandler));
             if (_merchantInventory.IsWithinBounds(position))
             {
                 LogInfo(message: "Character item dropped on merchant inventory");
+                _trade.Sell(item);
             }
         }
 
-        private void MerchantItemDroppedEventHandler(Vector2 position)
+        private void MerchantItemDroppedEventHandler(Items item, Vector2 position)
         {
             LogInfo(nameof(MerchantItemDroppedEventHandler));
             if (_characterInventory.IsWithinBounds(position))
             {
                 LogInfo(message: "Merchant item dropped on character inventory");
+                if (_trade.CanPurchase(item) == false)
+                {
+                    LogInfo(message: "Cannot purchase item");
+                    return;
+                }
+
+                _trade.Purchase(item);
             }
         }
 

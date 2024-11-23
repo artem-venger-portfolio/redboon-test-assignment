@@ -7,7 +7,7 @@ namespace Game.Unity.Assignment1
 {
     public abstract class InventoryViewBase : MonoBehaviour
     {
-        public abstract event Action<Vector2> ItemDropped;
+        public abstract event Action<Items, Vector2> ItemDropped;
 
         public abstract void Initialize(IInventory inventory, SlotViewBase slotTemplate,
                                         Transform draggingObjectContainer, IGameLogger logger);

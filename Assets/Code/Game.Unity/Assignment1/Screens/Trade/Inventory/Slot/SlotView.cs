@@ -19,11 +19,7 @@ namespace Game.Unity.Assignment1
 
         public override Items Item { get; protected set; }
 
-        public override event Action<Vector2> ItemDropped
-        {
-            add => _draggableObject.DragEnded += value;
-            remove => _draggableObject.DragEnded -= value;
-        }
+        public override event Action<Items, Vector2> ItemDropped;
 
         public override void Initialize(Items item, int price, Transform draggingObjectContainer, IGameLogger logger)
         {
@@ -31,11 +27,18 @@ namespace Game.Unity.Assignment1
             _nameLabel.text = item.ToString();
             _priceLabel.text = price.ToString();
             _draggableObject.Initialize(draggingObjectContainer, logger);
+            _draggableObject.DragEnded += DragEndedEventHandler;
         }
 
         public override void Destroy()
         {
+            _draggableObject.DragEnded -= DragEndedEventHandler;
             Destroy(gameObject);
+        }
+
+        private void DragEndedEventHandler(Vector2 position)
+        {
+            ItemDropped?.Invoke(Item, position);
         }
     }
 }

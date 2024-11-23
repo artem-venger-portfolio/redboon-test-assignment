@@ -17,7 +17,7 @@ namespace Game.Unity.Assignment1
         private Transform _draggingObjectContainer;
         private IGameLogger _logger;
 
-        public override event Action<Vector2> ItemDropped;
+        public override event Action<Items, Vector2> ItemDropped;
 
         public override void Initialize(IInventory inventory, SlotViewBase slotTemplate,
                                         Transform draggingObjectCOntainer, IGameLogger logger)
@@ -81,9 +81,9 @@ namespace Game.Unity.Assignment1
             }
         }
 
-        private void ItemDroppedEventHandler(Vector2 position)
+        private void ItemDroppedEventHandler(Items item, Vector2 position)
         {
-            ItemDropped?.Invoke(position);
+            ItemDropped?.Invoke(item, position);
         }
     }
 }
