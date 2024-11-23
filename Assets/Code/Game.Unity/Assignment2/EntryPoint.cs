@@ -20,7 +20,7 @@ namespace Game.Unity.Assignment2
                     rectangle1,
                     rectangle2,
                     new Vector2(x: -3, y: 25),
-                    new Vector2(x: -2, y: 25)
+                    new Vector2(x: 2, y: 25)
                 ),
                 new Edge(
                     rectangle2,

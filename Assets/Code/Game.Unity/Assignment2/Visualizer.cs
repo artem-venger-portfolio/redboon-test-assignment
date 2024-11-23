@@ -18,12 +18,15 @@ namespace Game.Unity.Assignment2
         public void Draw()
         {
             var unitSprite = CreateSprite(Color.white);
+            var lineMaterial = new Material(Shader.Find(name: "Legacy Shaders/Particles/Alpha Blended Premultiply"));
 
             for (var i = 0; i < _edges.Count; i++)
             {
                 var currentEdge = _edges[i];
                 var currentFirstRect = currentEdge.First;
                 var currentSecondRect = currentEdge.Second;
+
+                DrawLine($"Passage {i}", currentEdge.Start, currentEdge.End, Color.red, lineMaterial);
 
                 if (i == 0)
                 {
@@ -81,6 +84,19 @@ namespace Game.Unity.Assignment2
 
             var rectangleSpriteTransform = rectangleSpriteGO.transform;
             rectangleSpriteTransform.position = rectangleMin;
+        }
+
+        private void DrawLine(string name, Vector2 start, Vector2 end, Color color, Material material)
+        {
+            var lineRendererGO = new GameObject(name);
+            var lineRenderer = lineRendererGO.AddComponent<LineRenderer>();
+            lineRenderer.startColor = color;
+            lineRenderer.endColor = color;
+            lineRenderer.startWidth = 0.1f;
+            lineRenderer.endWidth = 0.1f;
+            lineRenderer.SetPosition(index: 0, start);
+            lineRenderer.SetPosition(index: 1, end);
+            lineRenderer.sharedMaterial = material;
         }
     }
 }
