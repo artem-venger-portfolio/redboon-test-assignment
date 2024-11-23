@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Assignment1;
-using Game.Assignment1.PriceCalculator;
 using Game.Common;
-using Game.Unity.Assignment1.HUD;
 using Game.Unity.Common;
 using UnityEngine;
 

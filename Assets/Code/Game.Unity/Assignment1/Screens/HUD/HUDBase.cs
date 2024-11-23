@@ -1,7 +1,7 @@
 using Game.Assignment1;
 using UnityEngine;
 
-namespace Game.Unity.Assignment1.HUD
+namespace Game.Unity.Assignment1
 {
     public abstract class HUDBase : MonoBehaviour
     {

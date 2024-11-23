@@ -2,7 +2,7 @@ using Game.Assignment1;
 using TMPro;
 using UnityEngine;
 
-namespace Game.Unity.Assignment1.HUD
+namespace Game.Unity.Assignment1
 {
     public class HUD : HUDBase
     {

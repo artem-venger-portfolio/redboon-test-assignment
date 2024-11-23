@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Game.Assignment1.PriceCalculator
+namespace Game.Assignment1
 {
     public class MultiplicativePriceCalculator : IPriceCalculator
     {

@@ -1,4 +1,4 @@
-namespace Game.Assignment1.PriceCalculator
+namespace Game.Assignment1
 {
     public interface IPriceCalculator
     {
