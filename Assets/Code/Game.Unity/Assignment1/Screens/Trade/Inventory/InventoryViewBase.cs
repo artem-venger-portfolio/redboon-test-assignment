@@ -1,5 +1,5 @@
 using System;
-using Game.Assignment1;
+using System.Collections.Generic;
 using Game.Common;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace Game.Unity.Assignment1
     {
         public abstract event Action<Vector2> ItemDropped;
 
-        public abstract void Initialize(IInventoryHolder inventoryHolder, SlotViewBase slotTemplate,
+        public abstract void Initialize(IList<SlotViewInfo> items, SlotViewBase slotTemplate,
                                         Transform draggingObjectContainer, IGameLogger logger);
 
         public abstract bool IsWithinBounds(Vector2 position);

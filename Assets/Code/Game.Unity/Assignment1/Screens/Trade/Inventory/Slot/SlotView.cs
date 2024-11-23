@@ -14,16 +14,19 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private DraggableObjectBase _draggableObject;
 
+        [SerializeField]
+        private TMP_Text _priceLabel;
+
         public override event Action<Vector2> ItemDropped
         {
             add => _draggableObject.DragEnded += value;
             remove => _draggableObject.DragEnded -= value;
         }
 
-        public override void Initialize(Items item, Transform draggingObjectContainer,
-                                        IGameLogger logger)
+        public override void Initialize(Items item, int price, Transform draggingObjectContainer, IGameLogger logger)
         {
             _nameLabel.text = item.ToString();
+            _priceLabel.text = price.ToString();
             _draggableObject.Initialize(draggingObjectContainer, logger);
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.Assignment1;
 using Game.Common;
 using UnityEngine;
@@ -26,10 +27,24 @@ namespace Game.Unity.Assignment1
             _merchant = merchant;
             _logger = logger;
 
-            _characterInventory.Initialize(_character, slotTemplate, _draggingObjectContainer, logger);
+            var characterSlotViewInfo = new List<SlotViewInfo>();
+            foreach (var currentItem in _character.Inventory.Items)
+            {
+                var slotViewInfo = new SlotViewInfo(currentItem, price: 1);
+                characterSlotViewInfo.Add(slotViewInfo);
+            }
+
+            _characterInventory.Initialize(characterSlotViewInfo, slotTemplate, _draggingObjectContainer, logger);
             _characterInventory.ItemDropped += CharacterItemDroppedEventHandler;
 
-            _merchantInventory.Initialize(_merchant, slotTemplate, _draggingObjectContainer, logger);
+            var merchantSlotViewInfo = new List<SlotViewInfo>();
+            foreach (var currentItem in _merchant.Inventory.Items)
+            {
+                var slotViewInfo = new SlotViewInfo(currentItem, price: 1);
+                merchantSlotViewInfo.Add(slotViewInfo);
+            }
+
+            _merchantInventory.Initialize(merchantSlotViewInfo, slotTemplate, _draggingObjectContainer, logger);
             _merchantInventory.ItemDropped += MerchantItemDroppedEventHandler;
         }
 
