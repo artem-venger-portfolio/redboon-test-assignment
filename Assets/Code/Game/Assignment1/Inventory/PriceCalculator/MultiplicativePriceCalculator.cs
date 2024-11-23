@@ -15,7 +15,10 @@ namespace Game.Assignment1.PriceCalculator
 
         public int GetPrice(Items item)
         {
-            return (int)(_prices[item] * _multiplier);
+            var result = _prices[item] * _multiplier;
+            var resultInt = (int)result;
+
+            return resultInt;
         }
     }
 }
