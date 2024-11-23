@@ -17,6 +17,8 @@ namespace Game.Unity.Assignment1
         [SerializeField]
         private TMP_Text _priceLabel;
 
+        public override Items Item { get; protected set; }
+
         public override event Action<Vector2> ItemDropped
         {
             add => _draggableObject.DragEnded += value;
@@ -25,9 +27,15 @@ namespace Game.Unity.Assignment1
 
         public override void Initialize(Items item, int price, Transform draggingObjectContainer, IGameLogger logger)
         {
+            Item = item;
             _nameLabel.text = item.ToString();
             _priceLabel.text = price.ToString();
             _draggableObject.Initialize(draggingObjectContainer, logger);
+        }
+
+        public override void Destroy()
+        {
+            Destroy(gameObject);
         }
     }
 }
