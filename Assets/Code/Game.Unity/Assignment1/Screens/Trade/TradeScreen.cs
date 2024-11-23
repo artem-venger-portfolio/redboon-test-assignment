@@ -27,25 +27,26 @@ namespace Game.Unity.Assignment1
             _merchant = merchant;
             _logger = logger;
 
-            var characterSlotViewInfo = new List<SlotViewInfo>();
-            foreach (var currentItem in _character.Inventory.Items)
-            {
-                var slotViewInfo = new SlotViewInfo(currentItem, price: 1);
-                characterSlotViewInfo.Add(slotViewInfo);
-            }
-
+            var characterSlotViewInfo = GetSlotViewInfo(_character.Inventory);
             _characterInventory.Initialize(characterSlotViewInfo, slotTemplate, _draggingObjectContainer, logger);
             _characterInventory.ItemDropped += CharacterItemDroppedEventHandler;
 
-            var merchantSlotViewInfo = new List<SlotViewInfo>();
-            foreach (var currentItem in _merchant.Inventory.Items)
-            {
-                var slotViewInfo = new SlotViewInfo(currentItem, price: 1);
-                merchantSlotViewInfo.Add(slotViewInfo);
-            }
-
+            var merchantSlotViewInfo = GetSlotViewInfo(_merchant.Inventory);
             _merchantInventory.Initialize(merchantSlotViewInfo, slotTemplate, _draggingObjectContainer, logger);
             _merchantInventory.ItemDropped += MerchantItemDroppedEventHandler;
+        }
+
+        private List<SlotViewInfo> GetSlotViewInfo(IInventory inventory)
+        {
+            var characterSlotViewInfo = new List<SlotViewInfo>();
+            foreach (var currentItem in inventory.Items)
+            {
+                var price = inventory.GetPrice(currentItem);
+                var slotViewInfo = new SlotViewInfo(currentItem, price);
+                characterSlotViewInfo.Add(slotViewInfo);
+            }
+
+            return characterSlotViewInfo;
         }
 
         private void CharacterItemDroppedEventHandler(Vector2 position)
