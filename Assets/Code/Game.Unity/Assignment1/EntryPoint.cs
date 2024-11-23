@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Game.Assignment1;
+using Game.Assignment1.PriceCalculator;
 using Game.Common;
 using Game.Unity.Assignment1.HUD;
 using Game.Unity.Common;
@@ -24,20 +26,24 @@ namespace Game.Unity.Assignment1
         private void Awake()
         {
             IGameLogger logger = new UnityLogger();
+            var prices = _config.Price.ToDictionary(currentPrice => currentPrice.Item,
+                                                    currentPrice => currentPrice.Price);
 
-            var characterInventory = CreateInventory(_config.CharacterInventory);
+            var characterInventory = CreateInventory(_config.CharacterInventory, prices, _config.SellPriceMultiplier);
             ICharacter character = new Character(characterInventory, _config.CharacterMoney, logger);
 
-            var merchantInventory = CreateInventory(_config.MerchantInventory);
+            var merchantInventory = CreateInventory(_config.MerchantInventory, prices, priceMultiplier: 1f);
             IMerchant merchant = new Merchant(merchantInventory, logger);
 
             _tradeScreen.Initialize(character, merchant, _slotTemplate, logger);
             _hud.Initialize(character);
         }
 
-        private static IInventory CreateInventory(IList<Items> configCharacterInventory)
+        private static IInventory CreateInventory(IList<Items> configCharacterInventory, Dictionary<Items, int> prices,
+                                                  float priceMultiplier)
         {
-            var inventory = new InventoryDefault();
+            IPriceCalculator priceCalculator = new MultiplicativePriceCalculator(prices, priceMultiplier);
+            IInventory inventory = new InventoryDefault(priceCalculator);
             foreach (var currentItem in configCharacterInventory)
             {
                 inventory.Add(currentItem);
