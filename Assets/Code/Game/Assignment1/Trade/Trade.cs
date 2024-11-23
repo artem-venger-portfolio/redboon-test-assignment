@@ -26,6 +26,8 @@ namespace Game.Assignment1
             }
 
             CharacterMoney -= GetPurchasePrice(item);
+            CharacterInventory.Add(item);
+            MerchantInventory.Remove(item);
         }
 
         public void Sell(Items item)
@@ -36,6 +38,8 @@ namespace Game.Assignment1
             }
 
             CharacterMoney += GetSellPrice(item);
+            CharacterInventory.Remove(item);
+            MerchantInventory.Add(item);
         }
 
         private int CharacterMoney
