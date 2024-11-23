@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Game.Assignment1;
 using Game.Common;
 using UnityEngine;
 
@@ -14,13 +15,14 @@ namespace Game.Unity.Assignment1
 
         public override event Action<Vector2> ItemDropped;
 
-        public override void Initialize(IList<SlotViewInfo> items, SlotViewBase slotTemplate,
+        public override void Initialize(IInventory inventory, SlotViewBase slotTemplate,
                                         Transform draggingObjectCOntainer, IGameLogger logger)
         {
-            foreach (var currentItem in items)
+            foreach (var currentItem in inventory.Items)
             {
+                var currentPrice = inventory.GetPrice(currentItem);
                 var slot = Instantiate(slotTemplate, transform);
-                slot.Initialize(currentItem.Item, currentItem.Price, draggingObjectCOntainer, logger);
+                slot.Initialize(currentItem, currentPrice, draggingObjectCOntainer, logger);
                 slot.ItemDropped += ItemDroppedEventHandler;
                 _slots.Add(slot);
             }
