@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Game.Assignment1
@@ -14,14 +15,18 @@ namespace Game.Assignment1
 
         public IReadOnlyList<Items> Items => _items;
 
+        public event Action<Items, InventoryOperation> Changed;
+
         public void Add(Items item)
         {
             _items.Add(item);
+            Changed?.Invoke(item, InventoryOperation.Add);
         }
 
         public void Remove(Items item)
         {
             _items.Remove(item);
+            Changed?.Invoke(item, InventoryOperation.Remove);
         }
 
         public int GetPrice(Items item)
