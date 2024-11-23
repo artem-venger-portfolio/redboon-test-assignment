@@ -6,6 +6,7 @@ namespace Game.Assignment1
     {
         IReadOnlyList<Items> Items { get; }
         void Add(Items item);
+        void Remove(Items item);
         int GetPrice(Items item);
         bool HasItem(Items item);
     }

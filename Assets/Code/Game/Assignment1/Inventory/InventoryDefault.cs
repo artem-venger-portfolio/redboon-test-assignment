@@ -19,6 +19,11 @@ namespace Game.Assignment1
             _items.Add(item);
         }
 
+        public void Remove(Items item)
+        {
+            _items.Remove(item);
+        }
+
         public int GetPrice(Items item)
         {
             return _priceCalculator.GetPrice(item);
