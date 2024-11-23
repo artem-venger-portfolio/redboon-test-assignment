@@ -23,5 +23,10 @@ namespace Game.Assignment1
         {
             return _priceCalculator.GetPrice(item);
         }
+
+        public bool HasItem(Items item)
+        {
+            return _items.Contains(item);
+        }
     }
 }
