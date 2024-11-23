@@ -12,4 +12,5 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment1_005Cscreens_005Ctrade_005Cinventory_005Cdropcontroller/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment1_005Cscreens_005Ctrade_005Cinventory_005Cslot/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment1_005Cscreens_005Ctrade_005Csellcontroller/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment2_005Cvisualizer/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Ccommon_005Clogger/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

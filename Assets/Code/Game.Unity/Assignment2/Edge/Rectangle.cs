@@ -12,5 +12,15 @@ namespace Game.Unity.Assignment2
             Min = min;
             Max = max;
         }
+
+        public static bool operator ==(Rectangle a, Rectangle b)
+        {
+            return a.Min == b.Min && a.Max == b.Max;
+        }
+
+        public static bool operator !=(Rectangle a, Rectangle b)
+        {
+            return !(a == b);
+        }
     }
 }
