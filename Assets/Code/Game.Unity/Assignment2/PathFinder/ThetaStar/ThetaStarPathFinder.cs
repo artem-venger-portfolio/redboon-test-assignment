@@ -26,15 +26,16 @@ namespace Game.Unity.Assignment2
             var startNode = level.Start;
             visualizer.Initialize(startNode);
 
-            var path = FindPath(startNode, level.End);
+            var path = FindPath(level, startNode, level.End);
 
             return path;
         }
 
-        private IEnumerable<Vector2> FindPath(IThetaStarNode starNode, IThetaStarNode endNode)
+        private IEnumerable<Vector2> FindPath(IThetaStartLevel level, IThetaStarNode starNode, IThetaStarNode endNode)
         {
             _open.Enqueue(starNode);
             starNode.Score = 0;
+            starNode.Parent = null;
 
             while (_open.Count > 0)
             {
@@ -53,28 +54,38 @@ namespace Game.Unity.Assignment2
                         continue;
                     }
 
-                    UpdateNeighbour(currentNode, currentNeighbour);
+                    UpdateNeighbour(level, currentNode, currentNeighbour);
                 }
             }
 
             return new List<Vector2>();
         }
 
-        private void UpdateNeighbour(IThetaStarNode currentNode, IThetaStarNode neighbour)
+        private void UpdateNeighbour(IThetaStartLevel level, IThetaStarNode currentNode, IThetaStarNode neighbour)
         {
-            var newNeighbourScore = currentNode.Score + GetDistance(currentNode, neighbour);
+            var parentOfCurrentNode = currentNode.Parent;
+            var nodeToCompare = parentOfCurrentNode != null && CanConnect(level, parentOfCurrentNode, neighbour)
+                ? parentOfCurrentNode
+                : currentNode;
+
+            var newNeighbourScore = nodeToCompare.Score + GetDistance(nodeToCompare, neighbour);
             if (newNeighbourScore >= neighbour.Score)
             {
                 return;
             }
 
             neighbour.Score = newNeighbourScore;
-            neighbour.Parent = currentNode;
+            neighbour.Parent = nodeToCompare;
 
             if (_open.Contains(neighbour) == false)
             {
                 _open.Enqueue(neighbour);
             }
+        }
+
+        private static bool CanConnect(IThetaStartLevel level, IThetaStarNode first, IThetaStarNode second)
+        {
+            return level.IsIntersecting(first.Position, second.Position) == false;
         }
 
         private float GetDistance(IThetaStarNode currentNode, IThetaStarNode neighbour)
@@ -92,6 +103,7 @@ namespace Game.Unity.Assignment2
                 currentNode = currentNode.Parent;
             }
 
+            path.Add(currentNode.Position);
             path.Reverse();
 
             return path;
