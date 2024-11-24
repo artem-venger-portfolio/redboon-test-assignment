@@ -9,5 +9,6 @@ namespace Game.Unity.Assignment2
         bool Contains(Rectangle rectangle);
         void Add(Edge edge);
         void AddStartAndEnd(Vector2 start, Vector2 end);
+        bool IsIntersecting(Vector2 start, Vector2 end);
     }
 }

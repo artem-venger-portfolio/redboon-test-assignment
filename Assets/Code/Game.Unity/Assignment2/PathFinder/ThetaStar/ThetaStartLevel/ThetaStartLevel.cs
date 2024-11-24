@@ -63,6 +63,21 @@ namespace Game.Unity.Assignment2
             End = AddNode(end, _rectangles.Count - 1);
         }
 
+        public bool IsIntersecting(Vector2 start, Vector2 end)
+        {
+            foreach (var currentRectangle in _rectangles)
+            {
+                if (currentRectangle.IsIntersecting(start, end) == false)
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         private IThetaStarNode AddNode(Vector2 position, int rectangleIndex)
         {
             var node = _nodeFactory.Create(position);

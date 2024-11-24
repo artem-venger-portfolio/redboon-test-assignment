@@ -46,5 +46,47 @@ namespace Game.Unity.Assignment2
         {
             _passages.Add(passage);
         }
+
+        public bool IsIntersecting(Vector2 start, Vector2 end)
+        {
+            var isStartInside = IsInside(start);
+            var isEndInside = IsInside(end);
+
+            if ((isStartInside && isEndInside) ||
+                (isStartInside == false && isEndInside == false))
+            {
+                return false;
+            }
+
+            var isIntersectingPassage = false;
+            foreach (var currentPassage in _passages)
+            {
+                var isIntersecting = AreIntersecting(start, end, currentPassage.Start, currentPassage.End);
+                if (isIntersecting == false)
+                {
+                    continue;
+                }
+
+                isIntersectingPassage = true;
+                break;
+            }
+
+            return !isIntersectingPassage;
+        }
+
+        private bool IsInside(Vector2 point)
+        {
+            var min = _originalRectangle.Min;
+            var max = _originalRectangle.Max;
+
+            return min.x <= point.x && point.x <= max.x &&
+                   min.y <= point.y && point.y <= max.y;
+        }
+
+        private static bool AreIntersecting(Vector2 line1Start, Vector2 line1End,
+                                            Vector2 line2Start, Vector2 line2End)
+        {
+            return Geometry.AreIntersecting(line1Start, line1End, line2Start, line2End);
+        }
     }
 }
