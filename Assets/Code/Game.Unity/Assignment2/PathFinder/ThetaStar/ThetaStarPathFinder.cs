@@ -9,12 +9,14 @@ namespace Game.Unity.Assignment2
         {
             IThetaStarNodeFactory nodeFactory = new ThetaStarNodeFactory();
             IThetaStarRectangleFactory rectangleFactory = new ThetaStarRectangleFactory(nodeFactory);
-            IThetaStartLevel level = new ThetaStartLevel(rectangleFactory);
+            IThetaStartLevel level = new ThetaStartLevel(rectangleFactory, nodeFactory);
 
             foreach (var currentEdge in edges)
             {
                 level.Add(currentEdge);
             }
+
+            level.AddStartAndEnd(start, end);
 
             var visualizerGO = new GameObject(nameof(ThetaStarGraphVisualizer));
             var visualizer = visualizerGO.AddComponent<ThetaStarGraphVisualizer>();

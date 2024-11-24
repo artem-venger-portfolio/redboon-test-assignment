@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Game.Unity.Assignment2
 {
@@ -7,14 +8,18 @@ namespace Game.Unity.Assignment2
     {
         private readonly IThetaStarRectangleFactory _rectangleFactory;
         private readonly List<IThetaStarRectangle> _rectangles;
+        private readonly IThetaStarNodeFactory _nodeFactory;
 
-        public ThetaStartLevel(IThetaStarRectangleFactory rectangleFactory)
+        public ThetaStartLevel(IThetaStarRectangleFactory rectangleFactory, IThetaStarNodeFactory nodeFactory)
         {
             _rectangleFactory = rectangleFactory;
+            _nodeFactory = nodeFactory;
             _rectangles = new List<IThetaStarRectangle>(capacity: 8);
         }
 
-        public IThetaStarNode Start => _rectangles[index: 0].Nodes[0, 0];
+        public IThetaStarNode Start { get; private set; }
+
+        public IThetaStarNode End { get; private set; }
 
         public bool Contains(Rectangle rectangle)
         {
@@ -50,6 +55,23 @@ namespace Game.Unity.Assignment2
             {
                 AddOneRectangle(edge, edge.Second, edge.First);
             }
+        }
+
+        public void AddStartAndEnd(Vector2 start, Vector2 end)
+        {
+            Start = AddNode(start, rectangleIndex: 0);
+            End = AddNode(end, _rectangles.Count - 1);
+        }
+
+        private IThetaStarNode AddNode(Vector2 position, int rectangleIndex)
+        {
+            var node = _nodeFactory.Create(position);
+            var closestNode = _rectangles[rectangleIndex].FindClosestNode(position);
+
+            closestNode.AddNeighbour(node);
+            node.AddNeighbour(closestNode);
+
+            return node;
         }
 
         private void AddOneRectangle(Edge edge, Rectangle existingRectangle, Rectangle newRectangle)
