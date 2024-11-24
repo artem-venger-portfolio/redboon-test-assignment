@@ -22,5 +22,6 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment2_005Cpathfinder_005Cthetastar_005Cthetastartlevel/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment2_005Cpathfinder_005Cthetastar_005Cthetastartlevel_005Cthetastarrectangle/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment2_005Cpathfinder_005Cthetastar_005Cthetastartlevel_005Cthetastarrectangle_005Cfactory/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment2_005Cpathfinder_005Cthetastar_005Cthetastarvalidator/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Cassignment2_005Cvisualizer/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Ccode_005Cgame_002Eunity_005Ccommon_005Clogger/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

@@ -1,15 +1,31 @@
 using System.Collections.Generic;
+using Game.Common;
 using UnityEngine;
 
 namespace Game.Unity.Assignment2
 {
     public class ThetaStarPathFinder : IPathFinder
     {
-        private readonly Queue<IThetaStarNode> _open = new Queue<IThetaStarNode>(capacity: 128);
-        private readonly List<IThetaStarNode> _closed = new List<IThetaStarNode>(capacity: 128);
+        private readonly IGameLogger _logger;
+        private readonly Queue<IThetaStarNode> _open;
+        private readonly List<IThetaStarNode> _closed;
+
+        public ThetaStarPathFinder(IGameLogger logger)
+        {
+            _logger = logger;
+            _open = new Queue<IThetaStarNode>(capacity: 128);
+            _closed = new List<IThetaStarNode>(capacity: 128);
+        }
 
         public IEnumerable<Vector2> GetPath(Vector2 start, Vector2 end, IEnumerable<Edge> edges)
         {
+            IThetaStarValidator validator = new ThetaStarValidator(_logger);
+            var isValid = validator.Validate(start, end, edges);
+            if (isValid == false)
+            {
+                return new List<Vector2>();
+            }
+
             IThetaStarNodeFactory nodeFactory = new ThetaStarNodeFactory();
             IThetaStarRectangleFactory rectangleFactory = new ThetaStarRectangleFactory(nodeFactory);
             IThetaStartLevel level = new ThetaStartLevel(rectangleFactory, nodeFactory);

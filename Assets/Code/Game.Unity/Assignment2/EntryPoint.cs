@@ -30,7 +30,7 @@ namespace Game.Unity.Assignment2
                 )
             };
 
-            IPathFinder pathFinder = new ThetaStarPathFinder();
+            IPathFinder pathFinder = new ThetaStarPathFinder(logger);
             var result = pathFinder.GetPath(new Vector2(x: -6.5f, y: 15),
                                             new Vector2(x: 37, y: 25),
                                             edges);
