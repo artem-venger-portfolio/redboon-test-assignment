@@ -6,7 +6,7 @@ namespace Game.Unity.Assignment2
     public class ThetaStarGraphVisualizer : MonoBehaviour
     {
         [SerializeField]
-        private float _nodeRadius = 0.01f;
+        private float _nodeRadius = 0.1f;
 
         private Queue<IThetaStarNode> _nodesToVisit;
         private List<IThetaStarNode> _visitedNodes;
