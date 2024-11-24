@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Game.Unity.Assignment2
 {
     public class ThetaStarRectangle : IThetaStarRectangle
@@ -15,6 +17,26 @@ namespace Game.Unity.Assignment2
         public bool Equals(Rectangle other)
         {
             return other == _originalRectangle;
+        }
+
+        public IThetaStarNode FindClosestNode(Vector2 position)
+        {
+            var closestNode = Nodes[0, 0];
+            var closestDistance = Vector2.Distance(position, closestNode.Position);
+
+            foreach (var node in Nodes)
+            {
+                var distance = Vector2.Distance(position, node.Position);
+                if (distance >= closestDistance)
+                {
+                    continue;
+                }
+
+                closestNode = node;
+                closestDistance = distance;
+            }
+
+            return closestNode;
         }
     }
 }

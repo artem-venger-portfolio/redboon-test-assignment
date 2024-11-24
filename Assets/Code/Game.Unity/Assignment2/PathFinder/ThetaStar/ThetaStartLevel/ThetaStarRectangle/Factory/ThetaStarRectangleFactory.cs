@@ -48,7 +48,7 @@ namespace Game.Unity.Assignment2
 
         private static void ConnectWithLinkNode(IThetaStarRectangle rectangle, IThetaStarNode linkNode)
         {
-            var closestNode = FindClosestNode(linkNode.Position, rectangle.Nodes);
+            var closestNode = rectangle.FindClosestNode(linkNode.Position);
 
             closestNode.AddNeighbour(linkNode);
             linkNode.AddNeighbour(closestNode);
@@ -113,26 +113,6 @@ namespace Game.Unity.Assignment2
             }
 
             return intValue;
-        }
-
-        private static IThetaStarNode FindClosestNode(Vector2 position, IThetaStarNode[,] nodes)
-        {
-            var closestNode = nodes[0, 0];
-            var closestDistance = Vector2.Distance(position, closestNode.Position);
-
-            foreach (var node in nodes)
-            {
-                var distance = Vector2.Distance(position, node.Position);
-                if (distance >= closestDistance)
-                {
-                    continue;
-                }
-
-                closestNode = node;
-                closestDistance = distance;
-            }
-
-            return closestNode;
         }
 
         private IThetaStarNode CreateNode(Vector2 position)
