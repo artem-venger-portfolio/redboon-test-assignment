@@ -36,6 +36,7 @@ namespace Game.Unity.Assignment2
                 _visitedNodes.Add(currentNode);
 
                 var position = currentNode.Position;
+                Gizmos.color = Color.red;
                 Gizmos.DrawSphere(position, _nodeRadius);
 
                 foreach (var neighbour in currentNode.Neighbours)
@@ -50,6 +51,7 @@ namespace Game.Unity.Assignment2
                         _nodesToVisit.Enqueue(neighbour);
                     }
 
+                    Gizmos.color = Color.white;
                     Gizmos.DrawLine(position, neighbour.Position);
                 }
             }
