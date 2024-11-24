@@ -57,12 +57,16 @@ namespace Game.Unity.Assignment2
         private IThetaStarNode[,] CreateNodes(Rectangle rectangle)
         {
             var min = rectangle.Min;
+            var minX = min.x;
+            var minY = min.y;
             var max = rectangle.Max;
+            var maxX = max.x;
+            var maxY = max.y;
 
-            var startX = (int)min.x;
-            var finishX = (int)max.x;
-            var startY = (int)min.y;
-            var finishY = (int)max.y;
+            var startX = ToIntGrid(minX, minX, maxX);
+            var finishX = ToIntGrid(maxX, minX, maxX);
+            var startY = ToIntGrid(minY, minY, maxY);
+            var finishY = ToIntGrid(maxY, minY, maxY);
 
             var xSize = finishX - startX + 1;
             var ySize = finishY - startY + 1;
@@ -94,6 +98,21 @@ namespace Game.Unity.Assignment2
             }
 
             return nodes;
+        }
+
+        private static int ToIntGrid(float value, float min, float max)
+        {
+            var intValue = (int)value;
+            if (intValue < min)
+            {
+                intValue++;
+            }
+            else if (intValue > max)
+            {
+                intValue--;
+            }
+
+            return intValue;
         }
 
         private static IThetaStarNode FindClosestNode(Vector2 position, IThetaStarNode[,] nodes)
