@@ -68,25 +68,25 @@ namespace Game.Unity.Assignment2
             var ySize = finishY - startY + 1;
 
             var nodes = new IThetaStarNode[xSize, ySize];
-            for (var x = startX; x <= finishX; x++)
+            for (int x = startX, i = 0; x <= finishX; x++, i++)
             {
-                for (var y = startY; y <= finishY; y++)
+                for (int y = startY, j = 0; y <= finishY; y++, j++)
                 {
                     var node = CreateNode(new Vector2(x, y));
-                    nodes[x, y] = node;
+                    nodes[i, j] = node;
 
-                    var hasLeftNeighbour = x > startX;
+                    var hasLeftNeighbour = i > 0;
                     if (hasLeftNeighbour)
                     {
-                        var leftNeighbour = nodes[x - 1, y];
+                        var leftNeighbour = nodes[i - 1, j];
                         node.AddNeighbour(leftNeighbour);
                         leftNeighbour.AddNeighbour(node);
                     }
 
-                    var hasBottomNeighbour = y > startY;
+                    var hasBottomNeighbour = j > 0;
                     if (hasBottomNeighbour)
                     {
-                        var bottomNeighbour = nodes[x, y - 1];
+                        var bottomNeighbour = nodes[i, j - 1];
                         node.AddNeighbour(bottomNeighbour);
                         bottomNeighbour.AddNeighbour(node);
                     }

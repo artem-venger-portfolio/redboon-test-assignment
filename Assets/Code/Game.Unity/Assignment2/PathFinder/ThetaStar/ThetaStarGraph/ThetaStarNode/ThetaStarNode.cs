@@ -5,11 +5,12 @@ namespace Game.Unity.Assignment2
 {
     public class ThetaStarNode : IThetaStarNode
     {
-        private List<IThetaStarNode> _neighbours;
+        private readonly List<IThetaStarNode> _neighbours;
 
         public ThetaStarNode(Vector2 position)
         {
             Position = position;
+            _neighbours = new List<IThetaStarNode>(capacity: 4);
         }
 
         public Vector2 Position { get; }

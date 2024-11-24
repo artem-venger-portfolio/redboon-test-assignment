@@ -14,6 +14,8 @@ namespace Game.Unity.Assignment2
             _rectangles = new List<IThetaStarRectangle>(capacity: 8);
         }
 
+        public IThetaStarNode Start => _rectangles[index: 0].Nodes[0, 0];
+
         public bool Contains(Rectangle rectangle)
         {
             return _rectangles.Exists(r => r.Equals(rectangle));
