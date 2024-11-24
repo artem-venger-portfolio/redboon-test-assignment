@@ -14,17 +14,22 @@ namespace Game.Unity.Assignment2
         public void Create(Edge edge, out IThetaStarRectangle firstRectangle, out IThetaStarRectangle secondRectangle)
         {
             var linkNode = CreateLinkNode(edge.Start, edge.End);
+            var passage = CreatePassage(edge.Start, edge.End);
 
-            firstRectangle = Create(edge.First, linkNode);
-            secondRectangle = Create(edge.Second, linkNode);
+            firstRectangle = Create(edge.First, passage, linkNode);
+            secondRectangle = Create(edge.Second, passage, linkNode);
         }
 
         public IThetaStarRectangle CreateSecond(IThetaStarRectangle firstRectangle, Rectangle secondRectangle,
                                                 Vector2 passageStart, Vector2 passageEnd)
         {
             var linkNode = CreateLinkNode(passageStart, passageEnd);
+            var passage = CreatePassage(passageStart, passageEnd);
+
             ConnectWithLinkNode(firstRectangle, linkNode);
-            var secondThetaStarRectangle = Create(secondRectangle, linkNode);
+            firstRectangle.AddPassage(passage);
+
+            var secondThetaStarRectangle = Create(secondRectangle, passage, linkNode);
 
             return secondThetaStarRectangle;
         }
@@ -37,10 +42,10 @@ namespace Game.Unity.Assignment2
             return linkNode;
         }
 
-        private IThetaStarRectangle Create(Rectangle rectangle, IThetaStarNode linkNode)
+        private IThetaStarRectangle Create(Rectangle rectangle, Passage passage, IThetaStarNode linkNode)
         {
             var nodes = CreateNodes(rectangle);
-            var thetaStarRectangle = new ThetaStarRectangle(rectangle, nodes);
+            var thetaStarRectangle = new ThetaStarRectangle(rectangle, passage, nodes);
             ConnectWithLinkNode(thetaStarRectangle, linkNode);
 
             return thetaStarRectangle;
@@ -118,6 +123,11 @@ namespace Game.Unity.Assignment2
         private IThetaStarNode CreateNode(Vector2 position)
         {
             return _nodeFactory.Create(position);
+        }
+
+        private static Passage CreatePassage(Vector2 start, Vector2 end)
+        {
+            return new Passage(start, end);
         }
     }
 }

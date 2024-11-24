@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Unity.Assignment2
@@ -5,10 +6,12 @@ namespace Game.Unity.Assignment2
     public class ThetaStarRectangle : IThetaStarRectangle
     {
         private readonly Rectangle _originalRectangle;
+        private readonly List<Passage> _passages;
 
-        public ThetaStarRectangle(Rectangle originalRectangle, IThetaStarNode[,] nodes)
+        public ThetaStarRectangle(Rectangle originalRectangle, Passage passages, IThetaStarNode[,] nodes)
         {
             _originalRectangle = originalRectangle;
+            _passages = new List<Passage> { passages };
             Nodes = nodes;
         }
 
@@ -37,6 +40,11 @@ namespace Game.Unity.Assignment2
             }
 
             return closestNode;
+        }
+
+        public void AddPassage(Passage passage)
+        {
+            _passages.Add(passage);
         }
     }
 }

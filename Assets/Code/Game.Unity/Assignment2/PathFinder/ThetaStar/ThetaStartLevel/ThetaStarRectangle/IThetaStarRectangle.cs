@@ -7,5 +7,7 @@ namespace Game.Unity.Assignment2
     {
         IThetaStarNode[,] Nodes { get; }
         IThetaStarNode FindClosestNode(Vector2 position);
+        void AddPassage(Passage passage);
+        bool IsIntersecting(Vector2 start, Vector2 end);
     }
 }
