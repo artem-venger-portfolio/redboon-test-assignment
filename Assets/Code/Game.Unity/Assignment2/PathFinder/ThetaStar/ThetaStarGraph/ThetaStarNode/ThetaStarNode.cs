@@ -11,6 +11,7 @@ namespace Game.Unity.Assignment2
         {
             Position = position;
             _neighbours = new List<IThetaStarNode>(capacity: 4);
+            Score = float.MaxValue;
         }
 
         public Vector2 Position { get; }
