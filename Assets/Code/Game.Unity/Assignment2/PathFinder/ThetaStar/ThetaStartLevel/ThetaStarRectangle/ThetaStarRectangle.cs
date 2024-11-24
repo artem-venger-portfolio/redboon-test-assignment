@@ -86,7 +86,7 @@ namespace Game.Unity.Assignment2
         private static bool AreIntersecting(Vector2 line1Start, Vector2 line1End,
                                             Vector2 line2Start, Vector2 line2End)
         {
-            return Geometry.AreParallel(line1Start, line1End, line2Start, line2End) == false &&
+            return Geometry.CanFindIntersection(line1Start, line1End, line2Start, line2End) &&
                    Geometry.AreIntersecting(line1Start, line1End, line2Start, line2End);
         }
     }

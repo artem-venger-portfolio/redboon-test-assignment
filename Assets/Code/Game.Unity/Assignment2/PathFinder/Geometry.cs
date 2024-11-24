@@ -13,8 +13,7 @@ namespace Game.Unity.Assignment2
             
             var denominator = (-vector2.x * vector1.y + vector1.x * vector2.y);
             
-            if (line1Start == line2Start || line1Start == line2End ||
-                line1End == line2Start || line1End == line2End)
+            if (HasCoincidePoints(line1Start, line1End, line2Start, line2End))
             {
                 return true;
             }
@@ -34,6 +33,23 @@ namespace Game.Unity.Assignment2
             return s >= 0 && s <= 1 && t >= 0 && t <= 1;
         }
         
+        public static bool CanFindIntersection(Vector2 line1Start, Vector2 line1End, 
+                                               Vector2 line2Start, Vector2 line2End)
+        {
+            if (HasCoincidePoints(line1Start, line1End, line2Start, line2End))
+            {
+                return true;
+            }
+
+            return AreParallel(line1Start, line1End, line2Start, line2End) == false;
+        }
+
+        private static bool HasCoincidePoints(Vector2 line1Start, Vector2 line1End, Vector2 line2Start, Vector2 line2End)
+        {
+            return line1Start == line2Start || line1Start == line2End ||
+                   line1End == line2Start || line1End == line2End;
+        }
+
         public static bool AreParallel(Vector2 line1Start, Vector2 line1End, 
                                        Vector2 line2Start, Vector2 line2End)
         {
