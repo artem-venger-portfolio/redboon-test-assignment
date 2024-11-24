@@ -21,7 +21,9 @@ namespace Game.Unity.Assignment2
 
             if (Mathf.Approximately(denominator, 0))
             {
-                throw new InvalidOperationException("Cannot calculate intersection of parallel lines");
+                throw new InvalidOperationException("Cannot calculate intersection of parallel lines\n" +
+                                                    $"Line 1: {line1Start} -> {line1End}\n" +
+                                                    $"Line 2: {line2Start} -> {line2End}");
             }
             
             var s = (-vector1.y * (line1Start.x - line2Start.x) + vector1.x * (line1Start.y - line2Start.y)) / 
@@ -30,6 +32,15 @@ namespace Game.Unity.Assignment2
                     denominator;
 
             return s >= 0 && s <= 1 && t >= 0 && t <= 1;
+        }
+        
+        public static bool AreParallel(Vector2 line1Start, Vector2 line1End, 
+                                       Vector2 line2Start, Vector2 line2End)
+        {
+            var vector1 = line1End - line1Start;
+            var vector2 = line2End - line2Start;
+            
+            return Mathf.Approximately(-vector2.x * vector1.y + vector1.x * vector2.y, 0);
         }
     }
 }
