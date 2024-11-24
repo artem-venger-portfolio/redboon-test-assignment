@@ -62,11 +62,19 @@ namespace Game.Unity.Assignment2
 
         private void DrawPath(Material lineMaterial)
         {
-            var pathLineRenderer = CreateLineRenderer(name: "Path", Color.green, lineMaterial);
             var pathPointIndex = 0;
+            var previousPoint = Vector2.zero;
             foreach (var currentPoint in _path)
             {
-                pathLineRenderer.SetPosition(pathPointIndex++, currentPoint);
+                if (pathPointIndex != 0)
+                {
+                    var pathLineRenderer = CreateLineRenderer($"Path {pathPointIndex}", Color.green, lineMaterial);
+                    pathLineRenderer.SetPosition(index: 0, previousPoint);
+                    pathLineRenderer.SetPosition(index: 1, currentPoint);
+                }
+
+                previousPoint = currentPoint;
+                pathPointIndex++;
             }
         }
 
